@@ -1,3 +1,3 @@
 # Helpers
 
-A description of this package.
+Useful functionality that I use in recent apps. Mostly SwiftUI helpers.
