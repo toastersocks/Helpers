@@ -34,8 +34,22 @@ public extension Backport where Content: View {
     }
 }
 
-fileprivate struct BoldViewModifier: ViewModifier {
+@available(macOS 12, *)
+public extension Backport where Content: View {
+    @ViewBuilder func monospaced(_ isActive: Bool ) -> some View {
+        if #available(iOS 16, macOS 13, *) {
+            content.monospaced(isActive)
+        } else {
+            if isActive {
+                content.modifier(MonospacedModifier())
+            } else {
+                content
+            }
+        }
+    }
+}
 
+fileprivate struct BoldViewModifier: ViewModifier {
     @Environment(\.font) private var font
 
     func body(content: Content) -> some View {
@@ -58,5 +72,13 @@ fileprivate struct FontWeightModifier: ViewModifier {
     }
 }
 
+@available(macOS 12, *)
+fileprivate struct MonospacedModifier: ViewModifier {
+    @Environment(\.font) private var font
 
+    func body(content: Content) -> some View {
+        content
+            .font(font?.monospaced())
+    }
+}
 
