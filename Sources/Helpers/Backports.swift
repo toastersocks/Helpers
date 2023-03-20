@@ -9,11 +9,17 @@ import SwiftUI
 
 
 public extension Backport where Content: View {
-    @ViewBuilder func bold(_ active: Bool = true) -> some View {
+    @ViewBuilder func bold(_ isActive: Bool = true) -> some View {
         if #available(iOS 16, macOS 13, *) {
-            content.bold(active)
+
+            content.bold(isActive)
         } else {
-            content.modifier(BoldViewModifier())
+            if isActive {
+                content
+                    .modifier(BoldViewModifier())
+            } else {
+                content
+            }
         }
     }
 }
