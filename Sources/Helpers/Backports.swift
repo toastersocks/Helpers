@@ -39,7 +39,6 @@ fileprivate struct BoldViewModifier: ViewModifier {
 }
 
 fileprivate struct FontWeightModifier: ViewModifier {
-
     @Environment(\.font) private var font
     @State private var weight: Font.Weight
 
