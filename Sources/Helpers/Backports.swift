@@ -34,7 +34,7 @@ public extension Backport where Content: View {
     }
 }
 
-@available(macOS 12, *)
+@available(macOS 12, iOS 15, *)
 public extension Backport where Content: View {
     @ViewBuilder func monospaced(_ isActive: Bool ) -> some View {
         if #available(iOS 16, macOS 13, *) {
@@ -72,7 +72,7 @@ fileprivate struct FontWeightModifier: ViewModifier {
     }
 }
 
-@available(macOS 12, *)
+@available(macOS 12, iOS 15, *)
 fileprivate struct MonospacedModifier: ViewModifier {
     @Environment(\.font) private var font
 
