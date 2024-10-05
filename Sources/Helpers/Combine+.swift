@@ -8,7 +8,7 @@
 import Combine
 
 
-extension Publishers {
+public extension Publishers {
     static func CombineLatest5<A: Publisher, B: Publisher, C: Publisher, D: Publisher, E: Publisher>(_ a: A, _ b: B, _ c: C, _ d: D, _ e: E) -> AnyPublisher<(A.Output, B.Output, C.Output, D.Output, E.Output), A.Failure> where A.Failure == B.Failure, B.Failure == C.Failure, C.Failure == D.Failure, D.Failure == E.Failure {
         a.combineLatest(b, c, d, e)
     }
@@ -32,7 +32,7 @@ extension Publishers {
     */
 }
 
-extension Publisher {
+public extension Publisher {
     func combineLatest<B: Publisher, C: Publisher, D: Publisher, E: Publisher>(_ b: B, _ c: C, _ d: D, _ e: E) -> AnyPublisher<(Output, B.Output, C.Output, D.Output, E.Output), Failure>
     where Self.Failure == B.Failure, B.Failure == C.Failure, C.Failure == D.Failure, D.Failure == E.Failure {
         Publishers.CombineLatest(
