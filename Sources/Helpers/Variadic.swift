@@ -8,27 +8,29 @@
 import SwiftUI
 
 
-struct VariadicMultiRootAdapter<Adapted: View>: _VariadicView_MultiViewRoot {
-    var content: (_VariadicView.Children) -> Adapted
+public typealias VariadicView = _VariadicView
 
-    func body(children: _VariadicView.Children) -> some View {
+struct VariadicMultiRootAdapter<Adapted: View>: VariadicView.MultiViewRoot {
+    var content: (VariadicView.Children) -> Adapted
+
+    func body(children: VariadicView.Children) -> some View {
         content(children)
     }
 }
 
-struct VariadicUnaryRootAdapter<Adapted: View>: _VariadicView_UnaryViewRoot {
-    var content: (_VariadicView.Children) -> Adapted
+struct VariadicUnaryRootAdapter<Adapted: View>: VariadicView.UnaryViewRoot {
+    var content: (VariadicView.Children) -> Adapted
 
-    func body(children: _VariadicView.Children) -> some View {
+    func body(children: VariadicView.Children) -> some View {
         content(children)
     }
 }
 
 public extension View {
-    func childViews<ChildList: View>(@ViewBuilder children: @escaping (_VariadicView.Children) -> ChildList) -> some View {
-        _VariadicView.Tree(VariadicMultiRootAdapter(content: children), content: { self })
+    func childViews<ChildList: View>(@ViewBuilder children: @escaping (VariadicView.Children) -> ChildList) -> some View {
+        VariadicView.Tree(VariadicMultiRootAdapter(content: children), content: { self })
     }
-    func unaryViews<ChildList: View>(@ViewBuilder children: @escaping (_VariadicView.Children) -> ChildList) -> some View {
-        _VariadicView.Tree(VariadicUnaryRootAdapter(content: children), content: { self })
+    func unaryViews<ChildList: View>(@ViewBuilder children: @escaping (VariadicView.Children) -> ChildList) -> some View {
+        VariadicView.Tree(VariadicUnaryRootAdapter(content: children), content: { self })
     }
 }
