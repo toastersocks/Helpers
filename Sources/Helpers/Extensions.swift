@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-@available(iOS 15, macOS 12, *)
+@available(iOS 15, macOS 12, watchOS 8, *)
 public extension Color {
     static var rainbow: Rainbow.Type {
         Rainbow.self
