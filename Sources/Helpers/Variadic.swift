@@ -44,12 +44,12 @@ public extension View {
 public extension Backport where Content == Never {
     @MainActor
     struct SubviewsCollection: RandomAccessCollection {
-        private enum Storage {
+        private enum Storage: @unchecked Sendable {
             case legacy(VariadicView.Children)
             case native(Any)
         }
 
-        nonisolated(unsafe) private let storage: Storage
+        private let storage: Storage
 
         nonisolated public var startIndex: Int { 0 }
         nonisolated public var endIndex: Int {
@@ -78,24 +78,24 @@ public extension Backport where Content == Never {
             }
         }
 
-        fileprivate init(children: VariadicView.Children) {
+        nonisolated fileprivate init(children: VariadicView.Children) {
             self.storage = .legacy(children)
         }
 
         @available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *)
-        fileprivate init(nativeSubviews: SwiftUI.SubviewsCollection) {
+        nonisolated fileprivate init(nativeSubviews: SwiftUI.SubviewsCollection) {
             self.storage = .native(nativeSubviews)
         }
     }
 
     @MainActor
     struct Subview: Identifiable, View {
-        private enum Storage {
+        private enum Storage: @unchecked Sendable {
             case legacy(VariadicView.Children.Element)
             case native(Any)
         }
 
-        nonisolated(unsafe) private let storage: Storage
+        private let storage: Storage
 
         nonisolated public var id: AnyHashable {
             switch storage {

@@ -7,11 +7,14 @@ on:
     branches: [ main, develop ]
 
 jobs:
-  test-swift-6-latest:
-    name: Swift 6 / iOS 18+
+  test-swift-6-2:
+    name: Swift 6.2 / Xcode 26
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+
+      - name: Select Xcode 26
+        run: sudo xcode-select -s /Applications/Xcode_26.0.1.app/Contents/Developer
 
       - name: Show Xcode version
         run: xcodebuild -version
@@ -19,7 +22,35 @@ jobs:
       - name: Show Swift version
         run: swift --version
 
-      - name: Build with Swift 6
+      - name: Build with Swift 6.2
+        run: swift build
+
+      - name: Run tests
+        run: swift test
+
+      - name: Build for iOS 18 Simulator
+        run: |
+          xcodebuild build \
+            -scheme Helpers \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -skipPackagePluginValidation
+
+  test-swift-6-1:
+    name: Swift 6.1 / Xcode 16
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode 16.4
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Show Swift version
+        run: swift --version
+
+      - name: Build with Swift 6.1
         run: swift build
 
       - name: Run tests
