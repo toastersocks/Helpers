@@ -25,7 +25,9 @@ public extension Backport where Content: View {
 }
 
 public extension Backport where Content: View {
-    @ViewBuilder func fontWeight(_ weight: Font.Weight) -> some View {
+    @ViewBuilder
+    @MainActor
+    func fontWeight(_ weight: Font.Weight) -> some View {
         if #available(iOS 16, macOS 13, watchOS 9, *) {
             content.fontWeight(weight)
         } else {
