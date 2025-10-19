@@ -60,7 +60,7 @@ fileprivate struct BoldViewModifier: ViewModifier {
 
 fileprivate struct FontWeightModifier: ViewModifier {
     @Environment(\.font) private var font
-    @State private var weight: Font.Weight
+    private var weight: Font.Weight
 
     func body(content: Content) -> some View {
         content
@@ -68,7 +68,7 @@ fileprivate struct FontWeightModifier: ViewModifier {
     }
 
     init(_ weight: Font.Weight) {
-        self._weight = State(initialValue: weight)
+        self.weight = weight
     }
 }
 
