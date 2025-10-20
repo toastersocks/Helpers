@@ -35,7 +35,6 @@ public extension View {
     }
 }
 
-#if compiler(>=6.0)
 @available(iOS, introduced: 13, obsoleted: 18)
 @available(macOS, introduced: 11, obsoleted: 15)
 @available(tvOS, introduced: 13, obsoleted: 18)
@@ -196,4 +195,3 @@ public extension Backport where Content == Never {
         }
     }
 }
-#endif
