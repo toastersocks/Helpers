@@ -94,7 +94,7 @@ jobs:
         run: |
           xcodebuild build \
             -scheme Helpers \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination 'platform=iOS Simulator,name=iPhone 17' \
             -skipPackagePluginValidation
 
       - name: Build with Swift 5 language mode
