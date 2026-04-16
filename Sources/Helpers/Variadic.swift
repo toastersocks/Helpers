@@ -35,11 +35,11 @@ public extension View {
     }
 }
 
-@available(iOS, introduced: 13, obsoleted: 18)
-@available(macOS, introduced: 11, obsoleted: 15)
-@available(tvOS, introduced: 13, obsoleted: 18)
-@available(watchOS, introduced: 8, obsoleted: 11)
-@available(visionOS, introduced: 1, obsoleted: 2)
+@available(iOS, introduced: 13, deprecated: 18)
+@available(macOS, introduced: 11, deprecated: 15)
+@available(tvOS, introduced: 13, deprecated: 18)
+@available(watchOS, introduced: 8, deprecated: 11)
+@available(visionOS, introduced: 1, deprecated: 2)
 public extension Backport where Content == Never {
     @MainActor
     struct SubviewsCollection: RandomAccessCollection {
