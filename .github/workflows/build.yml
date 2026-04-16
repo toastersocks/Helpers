@@ -68,3 +68,34 @@ jobs:
 
       - name: Build with Swift 5 language mode
         run: swift build -Xswiftc -swift-version -Xswiftc 5
+  
+  test-xcode-26-macos26:
+    name: Xcode 26 (macOS 26) / Swift 6 & 5
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode 26
+        run: sudo xcode-select -s /Applications/Xcode_26.0.1.app/Contents/Developer
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Show Swift version
+        run: swift --version
+
+      - name: Build with Swift 6 language mode
+        run: swift build
+
+      - name: Run tests
+        run: swift test
+
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild build \
+            -scheme Helpers \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -skipPackagePluginValidation
+
+      - name: Build with Swift 5 language mode
+        run: swift build -Xswiftc -swift-version -Xswiftc 5
