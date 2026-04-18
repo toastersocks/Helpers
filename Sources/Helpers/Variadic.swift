@@ -35,11 +35,11 @@ public extension View {
     }
 }
 
-@available(iOS, introduced: 13, deprecated: 18)
-@available(macOS, introduced: 11, deprecated: 15)
-@available(tvOS, introduced: 13, deprecated: 18)
-@available(watchOS, introduced: 8, deprecated: 11)
-@available(visionOS, introduced: 1, deprecated: 2)
+@available(iOS, introduced: 13, deprecated: 18, message: "Use SwiftUI.SubviewsCollection, SwiftUI.Subview, and Group(subviews:) directly")
+@available(macOS, introduced: 11, deprecated: 15, message: "Use SwiftUI.SubviewsCollection, SwiftUI.Subview, and Group(subviews:) directly")
+@available(tvOS, introduced: 13, deprecated: 18, message: "Use SwiftUI.SubviewsCollection, SwiftUI.Subview, and Group(subviews:) directly")
+@available(watchOS, introduced: 8, deprecated: 11, message: "Use SwiftUI.SubviewsCollection, SwiftUI.Subview, and Group(subviews:) directly")
+@available(visionOS, introduced: 1, deprecated: 2, message: "Use SwiftUI.SubviewsCollection, SwiftUI.Subview, and Group(subviews:) directly")
 public extension Backport where Content == Never {
     @MainActor
     struct SubviewsCollection: RandomAccessCollection {
